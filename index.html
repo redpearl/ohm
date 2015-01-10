@@ -20,17 +20,91 @@
 			bottom: 0;
 			margin: auto;
 		}
+
+		#textbox {
+			position: absolute;
+			visibility: hidden;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+			top: 63%;
+			margin: auto;
+			z-index: -4;
+			pointer-events: none;
+			-webkit-border-radius: 10px;
+			-moz-border-radius: 10px;
+			border-radius: 10px;
+		}
+
+		#questionbox {
+			font-size: 16pt;
+			color: black;
+			position: relative;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			/* transform: translate(-50%, -50%); */
+			z-index: 4;
+			resize: none;
+			pointer-events: all;
+			width: 35%;
+			box-sizing: border-box;
+			border: 2px solid #d80a3e;
+			padding: 2%;
+			-webkit-border-radius: 5px;
+		}
+
+		#submit {
+			font-size: 16pt;
+			color: black;
+			position: relative;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			/* transform: translate(-50%, -50%); */
+			bottom: 5%;
+			z-index: 4;
+			resize: none;
+			pointer-events: all;
+			width: 20%;
+			box-sizing: border-box;
+			padding: 4%;
+		}
 	</style>
 	
 	<script type="text/javascript" src="lib/impact/impact.js"></script>
 	<script type="text/javascript" src="lib/game/main.js"></script>
 	
 	<script type="text/javascript" src="TweenMax.js"></script>
+	<script type="text/javascript">
+		function showInputBox(){
+			document.getElementById('textbox').style.zIndex = 10;
+			document.getElementById('textbox').style.visibility = 'visible';
+			//document.getElementById('facebooklogin').style.zIndex = 10;
+		}
+		function hideInputBox(){
+			document.getElementById('textbox').style.zIndex = -10;
+			document.getElementById('textbox').style.visibility = 'hidden';
+			//document.getElementById('facebooklogin').style.zIndex = 10;
+		}
+		function submitScores(){
+			hideInputBox();
+			var name = document.getElementById('questionbox').value;
+			ig.game.addHighScore(name);
+			//document.getElementById('facebooklogin').style.zIndex = 10;
+		}
+	</script>
 	<!--
 	<script type="text/javascript" src="game.min.js"></script>
 	-->
 </head>
 <body>
+	<div id="textbox">
+		<textarea type="text" id="questionbox" cols="25" rows="2"></textarea>
+		<input type="button" id="submit" onclick="submitScores()" value="Submit"/>
+	</div>
 	<canvas id="canvas"></canvas>
 </body>
 </html>
